@@ -9,20 +9,17 @@
 		<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"/>
 		<link rel="stylesheet" href="resources/css/personalProfile.css"/>
-		<script type="text/javascript" src="bootstrap.min.js"></script>
+		<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="resources/js/jquery-1.12.3.min.js"></script>
+		<script type="text/javascript" src="resources/js/jquery.js"></script>
 		<script type="text/javascript" src="resources/js/jquery-mask-min.js"></script>
 		<script type="text/javascript" src="resources/js/personalProfile.js"></script>
 		<link rel="icon" href="resources/img/perfil2.jpg">
-                <!-- Bootstrap Core CSS -->
-                <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
-                <!-- Custom CSS -->
-                <link href="resources/css/landing-page.css" rel="stylesheet">
+        <link href="resources/css/landing-page.css" rel="stylesheet">
 
-                <!-- Custom Fonts -->
-                <link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-                <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+        <link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 	</head>
 	
 	<body>
@@ -121,8 +118,7 @@
 				                                    <td>${telefone.numero}</td>
 				                                    <td>${telefone.email}</td>
 				                                    <td><a href="#" id="remove" 
-				                                           onclick="document.getElementById('action').value = 'remover';document.getElementById('idTelefone').value = '${telefone.id}';
-				                                                    document.getElementById('listTelefonesForm').submit();"> 
+				                                           onclick="removerTelefone('${telefone.id}')"> 
 				                                            <span class="glyphicon glyphicon-trash"></span>
 				                                        </a>
 				                                                   

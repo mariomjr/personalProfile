@@ -24,19 +24,14 @@ public class TelefoneDao {
 			try {
 				StringBuilder sql = new StringBuilder();
 				sql.append(" select id, nomePessoa, numero, email, usuario_id from telefone ");
-//				sql.append(" where usuario_id = ? ");
+				sql.append(" where usuario_id = ? ");
 				if(query!= null){
-					sql.append(" where ( nomePessoa like '%?%'  or ");
-					sql.append(" numero like '%?%' or ");
-					sql.append(" email like '%?%' )");
+					sql.append(" and ( nomePessoa like '%").append(query).append("%'  or ");
+					sql.append(" numero like '%").append(query).append("%' or ");
+					sql.append(" email like '%").append(query).append("%' )");
 				}
 				PreparedStatement ps = conn.prepareStatement(sql.toString());
-//				ps.setLong(1, usuario.getId());
-				if(query!= null){
-					ps.setString(2, query);
-					ps.setString(3, query);
-					ps.setString(4, query);
-				}
+				ps.setLong(1, usuario.getId());
 				
 				ResultSet rs = ps.executeQuery();
 				Telefone telefone;
@@ -111,9 +106,9 @@ public class TelefoneDao {
 			ResultSet rs = ps.executeQuery();
 			List<Telefone> listTelefone = new ArrayList<Telefone>();
 			Telefone telefone = null;
-			if(rs.next()){
+			while(rs.next()){
 				telefone = new Telefone();
-				telefone.setId(id);
+				telefone.setId(rs.getLong("id"));
 				telefone.setNomePessoa(rs.getString("nomePessoa"));
 				telefone.setNumero(rs.getString("numero"));
 				telefone.setEmail(rs.getString("email"));
@@ -197,12 +192,13 @@ public class TelefoneDao {
 			conn = ConnectionFactory.createConnection();
 			conn.setAutoCommit(false);
 			StringBuilder sql = new StringBuilder();
-			sql.append(" insert into telefone(id, nomePessoa, numero, email) values(?,?,?,?) ");
+			sql.append(" insert into telefone(id, nomePessoa, numero, email, usuario_id) values(?,?,?,?,?) ");
 			ps = conn.prepareStatement(sql.toString());
 			ps.setLong(1, buscaNextIdTelefone(conn));
 			ps.setString(2, telefone.getNomePessoa());
 			ps.setString(3, telefone.getNumero());
 			ps.setString(4, telefone.getEmail());
+			ps.setLong(5, telefone.getUsuario_id());
 			ps.executeUpdate();
 			
 			conn.commit();

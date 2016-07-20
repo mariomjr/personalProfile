@@ -1,7 +1,6 @@
 package org.com.personalProfile.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.com.personalProfile.entity.Telefone;
 import org.com.personalProfile.entity.Usuario;
 import org.com.personalProfile.model.UsuarioModel;
 import org.com.personalProfile.utils.UtilUsuario;
@@ -27,8 +25,13 @@ public class UsuarioController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String action = req.getParameter("action");
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+		RequestDispatcher dispatcher;
+		if(UtilUsuario.getUsusarioLogado(req)!= null){
+			dispatcher = getServletContext().getRequestDispatcher("/pages/personalProfile.jsp");
+		    req.setAttribute("usuario", UtilUsuario.getUsusarioLogado(req));
+		}else{
+			dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+		}
 		dispatcher.forward(req, resp);
 	}
 
@@ -38,6 +41,8 @@ public class UsuarioController extends HttpServlet{
         String action = req.getParameter("action");
         if(action.equals("autenticar")){
             autenticarUsuario(req, resp);
+        }else if(action.equals("salvarProfile")){
+        	
         }
 	}
 

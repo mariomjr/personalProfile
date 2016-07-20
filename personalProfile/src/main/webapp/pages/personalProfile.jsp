@@ -76,38 +76,43 @@
                 <main>
                 	<div class="corpoDireito">
                     	<div class="bodyDados">
-                            <div class="row divCampos">
-								<div class="col-md-2">
-									Nome:
+                    		<form action="usuarioLogin" method="post"  role="form" data-toggle="validator" >
+                				<input type="hidden" id="action" name="action" value="salvarProfile">
+	                            <div class="row divCampos">
+									<div class="col-md-2">
+										Nome:
+									</div>
+									<div class="col-md-6">
+										<input type="text" id="nome" class="form-control" value="${usuario.nome}"/> 
+									</div>
 								</div>
-								<div class="col-md-6">
-									<input type="text" id="nome" class="form-control" value="${usuario.nome}"/> 
+								<div class="row divCampos">
+									<div class="col-md-2">
+										Endereço:
+									</div>
+									<div class="col-md-6">
+										<input type="text" id="telefone" class="form-control" value="${usuario.endereco}"/> 
+									</div>
 								</div>
-							</div>
-							<div class="row divCampos">
-								<div class="col-md-2">
-									Endereço:
-								</div>
-								<div class="col-md-6">
-									<input type="text" id="telefone" class="form-control" value="${usuario.endereco}"/> 
-								</div>
-							</div>
-                            <div class="row divCampos">
-								<div class="col-md-2">
-									Telefone:
-								</div>
-								<div class="col-md-6">
-									<input type="text" id="telefone" class="form-control" value="${usuario.telefone}"/> 
-								</div>
-                           	</div>
-                            <div class="row divCampos">
-								<div class="col-md-2">
-									E-mail:
-								</div>
-								<div class="col-md-6">
-									<input type="text" id="email" class="form-control" value="${usuario.email}"/> 
-								</div>
-                            </div>
+	                            <div class="row divCampos">
+									<div class="col-md-2">
+										Telefone:
+									</div>
+									<div class="col-md-6">
+										<input type="text" id="telefone" class="form-control" value="${usuario.telefone}"/> 
+									</div>
+	                           	</div>
+	                            <div class="row divCampos">
+									<div class="col-md-2">
+										E-mail:
+									</div>
+									<div class="col-md-6">
+										<input type="text" id="email" class="form-control" value="${usuario.email}"/> 
+									</div>
+	                            </div>
+                            
+                           		<button type="submit" class="btn btn-primary  btn-md">Salvar</button> 
+                       		</form>
                         </div>
                     </div>
                 </main>

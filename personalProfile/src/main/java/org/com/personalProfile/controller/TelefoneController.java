@@ -52,7 +52,7 @@ public class TelefoneController extends HttpServlet{
             Logger.getLogger(TelefoneController.class.getName()).log(Level.SEVERE, null, ex);
         }
         req.setAttribute("telefone", telefone);
-        req.setAttribute("action", "editar");
+        req.setAttribute("action", "adicionarAlterar");
         String nextJSP = "/pages/personalTelefoneAdd.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(req, resp);
@@ -68,10 +68,13 @@ public class TelefoneController extends HttpServlet{
 	@Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String action = req.getParameter("action");
-	    if(action.equals("adicionar")){
-	    	adicionarTelefone(req, resp);
-	    }else if(action.equals("editar")){
-	    	editarLivro(req, resp);
+	    if(action.equals("adicionarAlterar")){
+	    	String idTelefone = req.getParameter("idTelefone");
+	    	if(idTelefone == null || (idTelefone != null && idTelefone.equals(""))){
+	    		adicionarTelefone(req, resp);
+	    	}else{
+	    		editarLivro(req, resp);
+	    	}
 	    }else if(action.equals("remover")){
 	    	removerTelefone(req, resp);
 	    }else if(action.equals("novo")){
@@ -86,17 +89,15 @@ public class TelefoneController extends HttpServlet{
         String nomePessoa = req.getParameter("nomePessoa");
         String numero = req.getParameter("numero");
         String email = req.getParameter("email");
-        String usuarioId = req.getParameter("usuarioId");
         
-        Telefone telefone = new Telefone(nomePessoa, numero, email, Long.valueOf(usuarioId));
+        Telefone telefone = new Telefone(nomePessoa, numero, email, UtilUsuario.getUsusarioLogado(req).getId());
         
         getTelefoneModel().salvarAlterarTelefone(telefone);
         
-        List<Telefone> result = getTelefoneModel().buscaTelefoneByUsuarioId(Long.valueOf(usuarioId));  
+        List<Telefone> result = getTelefoneModel().buscaTelefoneByUsuarioId(UtilUsuario.getUsusarioLogado(req).getId());  
         req.setAttribute("idTelefone", telefone.getId());
         req.setAttribute("message", "Telefone salvo com sucesso!");
         forwardListTelefones(req, resp, result);
-        
     }
 
     private void editarLivro(HttpServletRequest req, HttpServletResponse resp)

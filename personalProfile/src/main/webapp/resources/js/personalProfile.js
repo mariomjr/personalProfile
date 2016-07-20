@@ -1,9 +1,9 @@
 function redirecionarPaginaPersonal(){
-	window.location="pages/personalProfile.jsp";
+	window.location="usuarioLogin";
 }
 
 function redirecionarPaginaProfile(){
-	window.location="personalProfile.jsp";
+	window.location="usuarioLogin";
 }
 
 function redirecionarAgendaPessoal(){
@@ -16,4 +16,10 @@ function redirecionarGaleria(){
 
 function redirecionarTelefones(){
 	window.location="telefones";
+}
+
+function removerTelefone(id){
+	document.getElementById('action').value = 'remover';
+	document.getElementById('idTelefone').value = id;
+    document.getElementById('listTelefonesForm').submit();
 }

@@ -75,10 +75,7 @@
                                     <div class="corpoDireito">
                                         <div class="bodyDados">
                                             <form action="telefones" method="post"  role="form" data-toggle="validator" >
-								                <c:if test ="${empty action}">                        	
-								                    <c:set var="action" value="adicionar"/>
-								                </c:if>
-								                <input type="hidden" id="action" name="action" value="${action}">
+								                <input type="hidden" id="action" name="action" value="adicionarAlterar">
 								                <input type="hidden" id="idTelefone" name="idTelefone" value="${telefone.id}">
 								                <h2>Telefone</h2>
 								                <div class="form-group col-xs-4">
