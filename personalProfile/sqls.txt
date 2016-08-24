@@ -26,3 +26,13 @@ create table telefone(
 );
 
 insert into telefone(id, nomePessoa, numero, email, usuario_id) values(1, 'Mário', '(62)8218-0015','mariohj94@gmail.com',1);
+
+CREATE TABLE eventoagenda
+(
+  id bigint NOT NULL,
+  nomeEvento character varying(255),
+  localEvento character varying(255),
+  dataEvento date,
+  usuario_id integer
+  
+)
