@@ -11,6 +11,15 @@ public class UsuarioModel {
 		return getUsuarioDao().buscaUsuarioByLogin(login);
 	}
 	
+	public boolean salvarUsuario(Usuario usuario){
+		try{
+			getUsuarioDao().salvarUsuario(usuario);
+			return true;
+		}catch(Exception e){
+			return false;
+		}
+	}
+	
 	
 	public UsuarioDao getUsuarioDao() {
 		if(usuarioDao == null){

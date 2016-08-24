@@ -6,18 +6,20 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Profile</title>
-		<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"/>
 		<link rel="stylesheet" href="resources/css/personalProfile.css"/>
-		<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="resources/js/jquery-1.12.3.min.js"></script>
-		<script type="text/javascript" src="resources/js/jquery.js"></script>
 		<script type="text/javascript" src="resources/js/jquery-mask-min.js"></script>
 		<script type="text/javascript" src="resources/js/personalProfile.js"></script>
 		<link rel="icon" href="resources/img/perfil2.jpg">
+                
+        <!-- Bootstrap Core CSS -->
+        <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
+        <!-- Custom CSS -->
         <link href="resources/css/landing-page.css" rel="stylesheet">
 
+        <!-- Custom Fonts -->
         <link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 	</head>
@@ -41,7 +43,7 @@
 	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	                <ul class="nav navbar-nav navbar-right">
 	                    <li>
-	                        <a href="http://localhost:8084/personalProfile/login.jsp">Personal Profile</a>
+	                        <a href="#" onclick="redirecionarPaginaProfile()">Personal Profile</a>
 	                    </li>
 	            </div>
 	            <!-- /.navbar-collapse -->
@@ -65,6 +67,10 @@
 	                                <button type="button" class="btn btn-default" onclick="redirecionarAgendaPessoal()">Agenda Pessoal</button>
 	                                <button type="button" class="btn btn-default" onclick="redirecionarGaleria()">Galeria</button>
 	                                <button type="button" class="btn btn-default" onclick="redirecionarTelefones()">Telefones</button>
+	                                <form action="usuarioLogin" method="get"  role="form" data-toggle="validator" >
+                                    	<input type="hidden" id="action" name="action" value="sair">
+                                    	<button type="submit" class="btn btn-default" style="width:100%">Sair</button>
+                                    </form>
 	                            </div>
 	                        </div>
 	                    </div>
@@ -74,9 +80,13 @@
 	            <main>
 	                <div class="corpoDireito">
 	                    <div class="bodyDados">
-	                    
+	                    	<c:if test="${not empty message}">                
+				                <div class="alert alert-success">
+				                    ${message}
+				                </div>
+				            </c:if> 
 	                    	<form action ="telefones" method="post">
-	                    		<input type="hidden" id="action" name="action" value="novo">            
+	                    		<input type="hidden" id="acaoNovo" name="acaoNovo" value="novo">            
 							    <button type="submit" class="btn btn-primary  btn-md">Novo Telefone</button> 
 							</form>
 							
@@ -92,7 +102,7 @@
 							
 				            <form action="telefones" method="post" id="listTelefonesForm" role="form" >              
 				                <input type="hidden" id="idTelefone" name="idTelefone">
-				                <input type="hidden" id="action" name="action">
+				                <input type="hidden" id="acaoTela" name="acaoTela">
 				                <c:choose>
 				                    <c:when test="${not empty listTelefones}">
 				                        <table  class="table table-striped">
@@ -136,25 +146,25 @@
 				                </c:choose>                        
 				            </form>
 
-	                        <div class="paginacaoTelefone">
-	                            <ul class="pagination">
-	                                <li>
-	                                    <a href="#" aria-label="Previous">
-	                                        <span aria-hidden="true">&laquo;</span>
-	                                    </a>
-	                                </li>
-	                                <li><a href="#">1</a></li>
-	                                <li><a href="#">2</a></li>
-	                                <li><a href="#">3</a></li>
-	                                <li><a href="#">4</a></li>
-	                                <li><a href="#">5</a></li>
-	                                <li>
-	                                    <a href="#" aria-label="Next">
-	                                        <span aria-hidden="true">&raquo;</span>
-	                                    </a>
-	                                </li>
-	                            </ul>
-	                        </div>
+<!-- 	                        <div class="paginacaoTelefone"> -->
+<!-- 	                            <ul class="pagination"> -->
+<!-- 	                                <li> -->
+<!-- 	                                    <a href="#" aria-label="Previous"> -->
+<!-- 	                                        <span aria-hidden="true">&laquo;</span> -->
+<!-- 	                                    </a> -->
+<!-- 	                                </li> -->
+<!-- 	                                <li><a href="#">1</a></li> -->
+<!-- 	                                <li><a href="#">2</a></li> -->
+<!-- 	                                <li><a href="#">3</a></li> -->
+<!-- 	                                <li><a href="#">4</a></li> -->
+<!-- 	                                <li><a href="#">5</a></li> -->
+<!-- 	                                <li> -->
+<!-- 	                                    <a href="#" aria-label="Next"> -->
+<!-- 	                                        <span aria-hidden="true">&raquo;</span> -->
+<!-- 	                                    </a> -->
+<!-- 	                                </li> -->
+<!-- 	                            </ul> -->
+<!-- 	                        </div> -->
 	                    </div>
 	                </div>
 	            </main>

@@ -26,6 +26,7 @@ public class UsuarioDao {
 				usuario = new Usuario();
 				usuario.setId(rs.getLong("id"));
 				usuario.setNome(rs.getString("nome"));
+				usuario.setTelefone(rs.getString("telefone"));
 				usuario.setEndereco(rs.getString("endereco"));
 				usuario.setEmail(rs.getString("email"));
 				usuario.setLogin(rs.getString("login"));
@@ -42,6 +43,37 @@ public class UsuarioDao {
 			}
 		}
 		return null;
+	}
+	
+	public void salvarUsuario(Usuario usuario) throws SQLException{
+		Connection conn = null;
+		PreparedStatement ps = null;
+		try {
+			conn = ConnectionFactory.createConnection();
+			conn.setAutoCommit(false);
+			StringBuilder sql = new StringBuilder();
+			sql.append(" update usuario set nome = ?, endereco = ? , telefone = ?, email=? where id = ?");
+			ps = conn.prepareStatement(sql.toString());
+			ps.setString(1, usuario.getNome());
+			ps.setString(2, usuario.getEndereco());
+			ps.setString(3, usuario.getTelefone());
+			ps.setString(4, usuario.getEmail());
+			ps.setLong(5, usuario.getId());
+			ps.executeUpdate();
+			
+			conn.commit();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			conn.rollback();
+		}finally{
+			if(ps!= null){
+				ps.close();
+			}
+			if(conn != null){
+				conn.close();
+			}
+		}
+		
 	}
 
 }

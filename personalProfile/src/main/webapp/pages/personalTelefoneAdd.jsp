@@ -41,7 +41,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="http://localhost:8084/personalProfile/login.jsp">Personal Profile</a>
+                            <a href="#" onclick="redirecionarPaginaProfile()">Personal Profile</a>
                         </li>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -65,6 +65,10 @@
                                                     <button type="button" class="btn btn-default" onclick="redirecionarAgendaPessoal()">Agenda Pessoal</button>
                                                     <button type="button" class="btn btn-default" onclick="redirecionarGaleria()">Galeria</button>
                                                     <button type="button" class="btn btn-default" onclick="redirecionarTelefones()">Telefones</button>
+                                                    <form action="usuarioLogin" method="get"  role="form" data-toggle="validator" >
+				                                    	<input type="hidden" id="action" name="action" value="sair">
+				                                    	<button type="submit" class="btn btn-default" style="width:100%">Sair</button>
+				                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -75,7 +79,7 @@
                                     <div class="corpoDireito">
                                         <div class="bodyDados">
                                             <form action="telefones" method="post"  role="form" data-toggle="validator" >
-								                <input type="hidden" id="action" name="action" value="adicionarAlterar">
+								                <input type="hidden" id="acaoTela" name="acaoTela" value="adicionarAlterar">
 								                <input type="hidden" id="idTelefone" name="idTelefone" value="${telefone.id}">
 								                <h2>Telefone</h2>
 								                <div class="form-group col-xs-4">

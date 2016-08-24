@@ -16,10 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.com.personalProfile.entity.EventoAgenda;
-import org.com.personalProfile.entity.Telefone;
 import org.com.personalProfile.entity.Usuario;
 import org.com.personalProfile.model.EventoAgendaModel;
-import org.com.personalProfile.model.TelefoneModel;
 import org.com.personalProfile.utils.UtilUsuario;
 
 @WebServlet(urlPatterns = { "/personalAgenda" })
@@ -34,7 +32,9 @@ public class EventoAgendaController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		RequestDispatcher dispatcher;
+		dispatcher = getServletContext().getRequestDispatcher("/pages/personalAgenda.jsp");
+		dispatcher.forward(req, resp);
 	}
 	
 	@Override

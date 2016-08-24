@@ -52,7 +52,7 @@ public class TelefoneController extends HttpServlet{
             Logger.getLogger(TelefoneController.class.getName()).log(Level.SEVERE, null, ex);
         }
         req.setAttribute("telefone", telefone);
-        req.setAttribute("action", "adicionarAlterar");
+        req.setAttribute("acaoTela", "adicionarAlterar");
         String nextJSP = "/pages/personalTelefoneAdd.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
         dispatcher.forward(req, resp);
@@ -67,17 +67,20 @@ public class TelefoneController extends HttpServlet{
 	
 	@Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String action = req.getParameter("action");
-	    if(action.equals("adicionarAlterar")){
-	    	String idTelefone = req.getParameter("idTelefone");
-	    	if(idTelefone == null || (idTelefone != null && idTelefone.equals(""))){
-	    		adicionarTelefone(req, resp);
-	    	}else{
-	    		editarLivro(req, resp);
-	    	}
-	    }else if(action.equals("remover")){
-	    	removerTelefone(req, resp);
-	    }else if(action.equals("novo")){
+		String action = req.getParameter("acaoTela");
+		String actionNovo = req.getParameter("acaoNovo");
+		if(actionNovo== null || (actionNovo != null && actionNovo.equals(""))){
+		    if(action.equals("adicionarAlterar")){
+		    	String idTelefone = req.getParameter("idTelefone");
+		    	if(idTelefone == null || (idTelefone != null && idTelefone.equals(""))){
+		    		adicionarTelefone(req, resp);
+		    	}else{
+		    		editarLivro(req, resp);
+		    	}
+		    }else if(action.equals("remover")){
+		    	removerTelefone(req, resp);
+		    }
+		}else if(actionNovo.equals("novo")){
 	    	String nextJSP = "/pages/personalTelefoneAdd.jsp";
 	        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(nextJSP);
 	        dispatcher.forward(req, resp);
@@ -92,12 +95,18 @@ public class TelefoneController extends HttpServlet{
         
         Telefone telefone = new Telefone(nomePessoa, numero, email, UtilUsuario.getUsusarioLogado(req).getId());
         
-        getTelefoneModel().salvarAlterarTelefone(telefone);
+        boolean salvou = getTelefoneModel().salvarAlterarTelefone(telefone);
         
         List<Telefone> result = getTelefoneModel().buscaTelefoneByUsuarioId(UtilUsuario.getUsusarioLogado(req).getId());  
-        req.setAttribute("idTelefone", telefone.getId());
-        req.setAttribute("message", "Telefone salvo com sucesso!");
-        forwardListTelefones(req, resp, result);
+        if(salvou){
+	        req.setAttribute("idTelefone", telefone.getId());
+	        req.setAttribute("message", "Telefone salvo com sucesso!");
+	        req.setAttribute("message", "Telefone salvo com sucesso!");
+	        forwardListTelefones(req, resp, result);
+        }else{
+	        req.setAttribute("message", "Erro ao salvar telefone!");
+        }
+        
     }
 
     private void editarLivro(HttpServletRequest req, HttpServletResponse resp)
@@ -110,12 +119,17 @@ public class TelefoneController extends HttpServlet{
         
         Telefone telefone = new Telefone(idTelefone,nomePessoa, numero, email, UtilUsuario.getUsusarioLogado(req).getId());
         
-        getTelefoneModel().salvarAlterarTelefone(telefone);
+        
+        boolean salvou = getTelefoneModel().salvarAlterarTelefone(telefone);
         
         List<Telefone> result = getTelefoneModel().buscaTelefoneByUsuarioId(UtilUsuario.getUsusarioLogado(req).getId());  
-        req.setAttribute("idTelefone", telefone.getId());
-        req.setAttribute("message", "Telefone alterado com sucesso!");
-        forwardListTelefones(req, resp, result);
+        if(salvou){
+        	req.setAttribute("idTelefone", telefone.getId());
+        	req.setAttribute("message", "Telefone alterado com sucesso!");
+        	forwardListTelefones(req, resp, result);
+        }else{
+        	req.setAttribute("message", "Erro ao alterar telefone!");
+        }
     } 
     
     private void removerTelefone(HttpServletRequest req, HttpServletResponse resp)

@@ -5,22 +5,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
         <title>Profile</title>
-        <link rel="stylesheet" href="../resources/css/bootstrap.min.css"/>
-        <link rel="stylesheet" href="../resources/css/bootstrap-theme.min.css"/>
-        <link rel="stylesheet" href="../resources/css/personalProfile.css"/>
-        <script type="text/javascript" src="bootstrap.min.js"></script>
-        <script type="text/javascript" src="../resources/js/jquery-1.12.3.min.js"></script>
-        <script type="text/javascript" src="../resources/js/jquery-mask-min.js"></script>
-        <script type="text/javascript" src="../resources/js/personalProfile.js"></script>
-        <link rel="icon" href="../resources/img/perfil2.jpg">
+        <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"/>
+        <link rel="stylesheet" href="resources/css/personalProfile.css"/>
+        <script type="text/javascript" src="resources/js/jquery-1.12.3.min.js"></script>
+        <script type="text/javascript" src="resources/js/jquery-mask-min.js"></script>
+        <script type="text/javascript" src="resources/js/personalProfile.js"></script>
+        <link rel="icon" href="resources/img/perfil2.jpg">
         <!-- Bootstrap Core CSS -->
-        <link href="../resources/css/bootstrap.min.css" rel="stylesheet">
+        <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="../resources/css/landing-page.css" rel="stylesheet">
+        <link href="resources/css/landing-page.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
-        <link href="../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
     </head>
     <body>
@@ -59,12 +57,16 @@
                             <!-- Menu Header -->
                             <div class="barraLadoEsquerdo">
                                 <div class="btn-group-vertical menuEsquerdo" role="group">
-                                    <img alt="Foto do perfil" src="../resources/img/perfil.jpg"
+                                    <img alt="Foto do perfil" src="resources/img/perfil.jpg"
                                          class="imagemPerfil">
                                     <button type="button" class="btn btn-default" onclick="redirecionarPaginaProfile()">Dados pessoais</button>
                                     <button type="button" class="btn btn-default" onclick="redirecionarAgendaPessoal()">Agenda Pessoal</button>
                                     <button type="button" class="btn btn-default" onclick="redirecionarGaleria()">Galeria</button>
                                     <button type="button" class="btn btn-default" onclick="redirecionarTelefones()">Telefones</button>
+                                    <form action="usuarioLogin" method="get"  role="form" data-toggle="validator" >
+                                    	<input type="hidden" id="action" name="action" value="sair">
+                                    	<button type="submit" class="btn btn-default" style="width:100%">Sair</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

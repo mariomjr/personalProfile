@@ -1,29 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 		<title>Profile</title>
-		<link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
 		<link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"/>
 		<link rel="stylesheet" href="resources/css/personalProfile.css"/>
-		<script type="text/javascript" src="bootstrap.min.js"></script>
 		<script type="text/javascript" src="resources/js/jquery-1.12.3.min.js"></script>
 		<script type="text/javascript" src="resources/js/jquery-mask-min.js"></script>
 		<script type="text/javascript" src="resources/js/personalProfile.js"></script>
 		<link rel="icon" href="resources/img/perfil2.jpg">
                 
-                <!-- Bootstrap Core CSS -->
-                <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Bootstrap Core CSS -->
+        <link href="resources/css/bootstrap.min.css" rel="stylesheet">
 
-                <!-- Custom CSS -->
-                <link href="resources/css/landing-page.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="resources/css/landing-page.css" rel="stylesheet">
 
-                <!-- Custom Fonts -->
-                <link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-                <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-                
+        <!-- Custom Fonts -->
+        <link href="resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+        
 	</head>
 	<body>
         <!-- Navigation -->
@@ -43,8 +42,9 @@
 	            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 	                <ul class="nav navbar-nav navbar-right">
 	                    <li>
-	                        <a href="http://localhost:8084/personalProfile/login.jsp">Personal Profile</a>
+	                        <a href="#" onclick="redirecionarPaginaProfile()">Personal Profile</a>
 	                    </li>
+                    </ul>
 	            </div>
 	            <!-- /.navbar-collapse -->
 	        </div>
@@ -67,6 +67,10 @@
                                     <button type="button" class="btn btn-default" onclick="redirecionarAgendaPessoal()">Agenda Pessoal</button>
                                     <button type="button" class="btn btn-default" onclick="redirecionarGaleria()">Galeria</button>
                                     <button type="button" class="btn btn-default" onclick="redirecionarTelefones()">Telefones</button>
+                                    <form action="usuarioLogin" method="get"  role="form" data-toggle="validator" >
+                                    	<input type="hidden" id="action" name="action" value="sair">
+                                    	<button type="submit" class="btn btn-default" style="width:100%">Sair</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -76,6 +80,11 @@
                 <main>
                 	<div class="corpoDireito">
                     	<div class="bodyDados">
+                    		<c:if test="${not empty message}">                
+				                <div class="alert alert-success">
+				                    ${message}
+				                </div>
+				            </c:if>
                     		<form action="usuarioLogin" method="post"  role="form" data-toggle="validator" >
                 				<input type="hidden" id="action" name="action" value="salvarProfile">
 	                            <div class="row divCampos">
@@ -83,7 +92,7 @@
 										Nome:
 									</div>
 									<div class="col-md-6">
-										<input type="text" id="nome" class="form-control" value="${usuario.nome}"/> 
+										<input type="text" id="nome" name="nome" class="form-control" value="${usuario.nome}"/> 
 									</div>
 								</div>
 								<div class="row divCampos">
@@ -91,7 +100,7 @@
 										Endereço:
 									</div>
 									<div class="col-md-6">
-										<input type="text" id="telefone" class="form-control" value="${usuario.endereco}"/> 
+										<input type="text" id="endereco" name="endereco" class="form-control" value="${usuario.endereco}"/> 
 									</div>
 								</div>
 	                            <div class="row divCampos">
@@ -99,7 +108,7 @@
 										Telefone:
 									</div>
 									<div class="col-md-6">
-										<input type="text" id="telefone" class="form-control" value="${usuario.telefone}"/> 
+										<input type="text" id="telefone"  name="telefone" class="form-control" value="${usuario.telefone}"/> 
 									</div>
 	                           	</div>
 	                            <div class="row divCampos">
@@ -107,7 +116,7 @@
 										E-mail:
 									</div>
 									<div class="col-md-6">
-										<input type="text" id="email" class="form-control" value="${usuario.email}"/> 
+										<input type="text" id="email" name="email" class="form-control" value="${usuario.email}"/> 
 									</div>
 	                            </div>
                             

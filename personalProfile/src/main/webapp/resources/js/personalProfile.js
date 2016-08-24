@@ -7,7 +7,7 @@ function redirecionarPaginaProfile(){
 }
 
 function redirecionarAgendaPessoal(){
-	window.location="personalAgenda.jsp";
+	window.location="personalAgenda";
 }
 
 function redirecionarGaleria(){
@@ -19,7 +19,7 @@ function redirecionarTelefones(){
 }
 
 function removerTelefone(id){
-	document.getElementById('action').value = 'remover';
-	document.getElementById('idTelefone').value = id;
-    document.getElementById('listTelefonesForm').submit();
+	document.getElementById("idTelefone").value = id;
+	document.getElementById("acaoTela").value = "remover";
+    document.getElementById("listTelefonesForm").submit();
 }

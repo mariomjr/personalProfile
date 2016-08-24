@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
     <head>
@@ -8,7 +9,6 @@
         <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="resources/css/bootstrap-theme.min.css"/>
         <link rel="stylesheet" href="resources/css/personalProfile.css"/>
-        <script type="text/javascript" src="bootstrap.min.js"></script>
         <script type="text/javascript" src="resources/js/jquery-1.12.3.min.js"></script>
         <script type="text/javascript" src="resources/js/jquery-mask-min.js"></script>
         <script type="text/javascript" src="resources/js/personalProfile.js"></script>
@@ -67,12 +67,18 @@
                     <div class="col-lg-12">
                         <div class="intro-message">
                             <!-- Login -->
+                            
                             <form action="usuarioLogin" method="post"  role="form" data-toggle="validator" >
                 				<input type="hidden" id="action" name="action" value="autenticar">
 	                            <div class="panel panel-primary divLogin">
 	                                <div class="panel-heading">
 	                                    Login Personal Profile
 	                                </div>
+	                                <c:if test="${not empty message}">                
+						                <div class="alert alert-danger">
+						                    ${message}
+						                </div>
+						            </c:if> 
 	                                <div class="panel-body">
 	                                    Usuário: 
 	                                    <div class="input-group">

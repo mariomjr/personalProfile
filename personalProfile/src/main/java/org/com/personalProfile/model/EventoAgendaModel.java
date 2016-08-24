@@ -4,9 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.com.personalProfile.dao.EventoAgendaDao;
-import org.com.personalProfile.dao.TelefoneDao;
 import org.com.personalProfile.entity.EventoAgenda;
-import org.com.personalProfile.entity.Telefone;
 
 public class EventoAgendaModel {
 
